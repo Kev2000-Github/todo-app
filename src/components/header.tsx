@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        textAlign: 'center'
     },
     headerText: {
         color: styleData.roseColor,

@@ -24,7 +24,7 @@ export const AppNavigator = () => (
                     backgroundColor: styleData.headerColor,
                     height: 60,
                 },
-                headerTintColor: "#444",
+                headerTitleAlign: 'center',
             }}
         >
             <Screen
