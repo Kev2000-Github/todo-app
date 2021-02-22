@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     headerText: {
         color: styleData.roseColor,

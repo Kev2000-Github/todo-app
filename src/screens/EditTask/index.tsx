@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { RootStackParamList } from '../appNavigator';
 import { StackScreenProps } from "@react-navigation/stack";
 import { globalStyle } from '../../common/globalStyle';
@@ -9,6 +9,7 @@ import { titles } from '../../common/utils';
 import { useForm, Controller } from "react-hook-form";
 import { DismissKeyboard } from "../../components/dismissKeyboard";
 import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 type Props = StackScreenProps<RootStackParamList, 'EditTask'>;
 
 const taskRules = {
@@ -22,9 +23,10 @@ export const EditTask = ({ navigation, route }: Props) => {
     const { task, id } = route.params;
     const dispatch = useDispatch();
     const onSubmit = (data: Object) => {
-        const date = new Date();
-        const returnData = { id, date, ...data };
         const type = route.params.title == titles.create ? "ADD_TASK" : "EDIT_TASK";
+        const date = new Date().getTime();
+        const returnData = { id, date, ...data };
+        if (type == "ADD_TASK") returnData['id'] = uuidv4();
         dispatch({ type, payload: returnData });
         navigation.goBack();
     }

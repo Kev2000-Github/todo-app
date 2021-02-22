@@ -19,10 +19,9 @@ export const Home = ({ navigation }: Props) => {
     const tasks = useSelector((state: multipleTasksType) => state['tasks']);
     const [refresh, setRefresh] = useState(false);
     const dispatch = useDispatch();
-    console.log(tasks);
     const handleRefresh = () => {
         setRefresh(true);
-        dispatch({ type: 'RELOAD' });
+        dispatch({ type: 'EDIT_TASK', payload: tasks[0] });
         setRefresh(false);
     }
     const addHandler = (item: any) => {
@@ -43,9 +42,9 @@ export const Home = ({ navigation }: Props) => {
             <FlatList
                 refreshing={refresh}
                 onRefresh={handleRefresh}
-                keyExtractor={(item) => item['id']}
+                keyExtractor={(item) => `${item['id']}`}
                 style={styles.list}
-                data={tasks.reverse()}
+                data={tasks}
                 renderItem={({ item }) => (
                     <TouchableOpacity style={styles.listItem}>
                         <View style={{ flex: 1 }}>
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
         width: Dimensions.get('screen').width,
         resizeMode: 'contain',
         marginTop: -40,
-        marginBottom: -40,
+        marginBottom: -20,
     },
     regularText: {
         fontFamily: "nunito-regular",
@@ -84,7 +83,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 10,
         color: styleData.roseColor
-
     },
     taskIcon: {
         padding: 5,
