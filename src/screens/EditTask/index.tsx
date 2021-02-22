@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { RootStackParamList } from '../appNavigator';
 import { StackScreenProps } from "@react-navigation/stack";
 import { globalStyle } from '../../common/globalStyle';
@@ -32,7 +32,8 @@ export const EditTask = ({ navigation, route }: Props) => {
     }
     return (
         <DismissKeyboard>
-            <View style={{ ...globalStyle.globalBG, height: '100%' }}>
+            <View style={{ ...globalStyle.globalBG, height: '100%', justifyContent: 'center' }}>
+                <Image style={styles.BGImage} source={require("../../../assets/main.jpg")} />
                 <View style={styles.container}>
                     <Text style={styles.regularText}>TASK: </Text>
                     <View>
@@ -73,5 +74,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignSelf: 'center',
         paddingBottom: 20,
+        backgroundColor: 'white',
+    },
+    BGImage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '100%',
+        width: '100%',
     }
 }) 

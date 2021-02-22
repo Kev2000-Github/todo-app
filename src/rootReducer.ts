@@ -18,7 +18,7 @@ const initialState: multipleTasksType = {
 export const taskReducer = (state: multipleTasksType = initialState, action: any) => {
     switch (action.type) {
         case 'ADD_TASK':
-            return { tasks: [...state.tasks, action.payload] };
+            return { tasks: [action.payload, ...state.tasks] };
         case 'DELETE_TASK':
             const payload = state.tasks.filter(task => task['id'] != action.payload['id']);
             return { tasks: payload }

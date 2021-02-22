@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { View, Text, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Dimensions, Animated } from 'react-native';
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from '../appNavigator';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -35,9 +35,8 @@ export const Home = ({ navigation }: Props) => {
     }
 
     return (
-        <View style={globalBG}>
+        <View style={{ flex: 1, flexDirection: 'column', ...globalBG }}>
             <Image source={require('../../../assets/main.png')} style={styles.mainImg} />
-            <FlatButton text="A D D  T A S K" onPress={() => addHandler({ task: "" })} />
             <Text style={{ ...styles.regularText, ...styles.title }}>TODO LIST</Text>
             <FlatList
                 refreshing={refresh}
@@ -60,6 +59,7 @@ export const Home = ({ navigation }: Props) => {
                     </TouchableOpacity>
                 )}
             />
+            <FlatButton style={{ marginVertical: 20 }} text="A D D  T A S K" onPress={() => addHandler({ task: "" })} />
         </View>
     )
 }
@@ -98,8 +98,7 @@ const styles = StyleSheet.create({
         color: 'gray'
     },
     list: {
-        marginTop: 10,
-        height: '100%',
+        marginTop: 5,
     },
     listItem: {
         borderColor: "#ddd",
